@@ -1,3 +1,4 @@
+import {PURPLE} from "../../constant/Color.jsx";
 import Messages from "../../constant/local/Messages.jsx";
 
 const SearchContact = () => {
@@ -6,13 +7,12 @@ const SearchContact = () => {
       <span
           className="input-group-text"
           id="basic-addon1"
-          style={{backgroundColor: "purple"}}>
+          style={{backgroundColor: PURPLE}}>
         <i className="fas fa-search"/>
       </span>
             <input
                 dir="rtl"
                 type="text"
-                style={{backgroundColor: "gray", borderColor: "purple"}}
                 className="form-control"
                 placeholder={Messages.fa.messages['search-contact']}
                 aria-label="Search"
