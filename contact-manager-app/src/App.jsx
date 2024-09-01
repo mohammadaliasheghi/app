@@ -1,12 +1,18 @@
-import './App.css'
-import Navbar from "./component/Navbar.jsx";
+import {useState} from "react";
+
+import {Contacts, Navbar,} from "./component";
+import "./App.css";
 
 const App = () => {
-    return (
-        <div>
-            <Navbar/>
-        </div>
-    )
-}
+    const [loading] = useState(false);
+    const [getContacts] = useState([]);
 
-export default App
+    return (
+        <div className="App">
+            <Navbar/>
+            <Contacts contacts={getContacts} loading={loading}/>
+        </div>
+    );
+};
+
+export default App;

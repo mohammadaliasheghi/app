@@ -1,4 +1,4 @@
-import SearchContact from "./contact/SearchContact";
+import SearchContact from "./contact/SearchContact.jsx";
 
 import {BACKGROUND, PURPLE} from "../constant/Color.jsx";
 import Messages from "../constant/local/Messages.jsx";
