@@ -1,12 +1,11 @@
 import './App.css'
+import Navbar from "./component/Navbar.jsx";
 
 const App = () => {
     return (
-        <>
-            <p>وب اپلیکیشن مدیریت مخاطبین</p>
-            <span className='fa fa-user'/>
-            <button className='btn btn-primary'>انتخاب</button>
-        </>
+        <div>
+            <Navbar/>
+        </div>
     )
 }
 
