@@ -36,7 +36,6 @@ public class Constant {
     //END_METHOD_TYPE
 
     //SECURITY
-    public static final String SECRET_KEY = "$2a$10$Q7vv9Y3ZuWQkU6320B7mq...QRr7/z76io4vma5rlII0ezZfhVK0e";
     public static final String DEFAULT_SECURITY_ROLE_CONSTANT = "ROLE_";
     public static final String AUTHORIZATION = "Authorization";
     public static final String TOKEN = "/token";

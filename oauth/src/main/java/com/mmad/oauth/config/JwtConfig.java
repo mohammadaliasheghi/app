@@ -5,6 +5,7 @@ import com.mmad.oauth.service.UsersService;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
@@ -15,6 +16,9 @@ import java.util.stream.Collectors;
 
 @Component
 public class JwtConfig {
+
+    @Value("${security.password.secret-key}")
+    private String secretKey;
 
     private UsersService usersService;
 
@@ -34,13 +38,13 @@ public class JwtConfig {
                 .claim("authorities", details.getAuthorities().stream().map(GrantedAuthority::getAuthority).collect(Collectors.toList()))
                 .setIssuedAt(new Date(System.currentTimeMillis()))
                 .setExpiration(new Date(System.currentTimeMillis() + (60 * 60 * 12 * 1000)))
-                .signWith(SignatureAlgorithm.HS512, Constant.SECRET_KEY)
+                .signWith(SignatureAlgorithm.HS512, secretKey)
                 .compact();
     }
 
     public boolean validateToken(String token) {
         try {
-            Jwts.parser().setSigningKey(Constant.SECRET_KEY).parseClaimsJws(token);
+            Jwts.parser().setSigningKey(secretKey).parseClaimsJws(token);
             return true;
         } catch (Exception e) {
             e.fillInStackTrace();

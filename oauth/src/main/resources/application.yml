@@ -26,3 +26,7 @@ server:
   port: 8089
   error:
     include-message: always
+
+security:
+  password:
+    secret-key: $2a$10$Q7vv9Y3ZuWQkU6320B7mq...QRr7/z76io4vma5rlII0ezZfhVK0e
