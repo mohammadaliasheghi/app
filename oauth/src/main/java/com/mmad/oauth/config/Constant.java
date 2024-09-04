@@ -42,7 +42,7 @@ public class Constant {
     //END_SECURITY
 
     //KAFKA
-    public static final String OAUTH_TOPIC = "oauth-topic";
-    public static final String OAUTH_GROUP = "oauth-group";
+    public static final String OAUTH_TOPIC = "json-topic";
+    public static final String OAUTH_GROUP = "json-group";
     //END_KAFKA
 }

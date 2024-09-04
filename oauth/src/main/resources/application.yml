@@ -23,8 +23,6 @@ spring:
     show-sql: true
   kafka:
     bootstrap-servers: localhost:9092
-    consumer:
-      group-id: oauth-group
 
 server:
   port: 8089
