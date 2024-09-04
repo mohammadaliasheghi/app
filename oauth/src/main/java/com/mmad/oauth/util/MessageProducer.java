@@ -1,5 +1,6 @@
 package com.mmad.oauth.util;
 
+import com.google.gson.Gson;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,10 +22,11 @@ public class MessageProducer {
         this.kafkaTemplate = kafkaTemplate;
     }
 
-    public void sendMessage(String topic, String data) {
+    public <T> void sendMessage(String topic, T data) {
+        Gson gson = new Gson();
         LOGGER.info("Sending Message {}", data);
-        Message<?> message = MessageBuilder
-                .withPayload(data)
+        Message<String> message = MessageBuilder
+                .withPayload(gson.toJson(data))
                 .setHeader(KafkaHeaders.TOPIC, topic)
                 .build();
         kafkaTemplate.send(message);

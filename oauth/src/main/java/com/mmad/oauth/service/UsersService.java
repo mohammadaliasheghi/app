@@ -145,7 +145,7 @@ public class UsersService implements UserDetailsService {
                 new ResourceNotFoundException(Users.class.getSimpleName(), "id", id)));
         model.setPassword(null);
         try {
-            messageProducer.sendMessage(Constant.OAUTH_TOPIC, String.valueOf(model));
+            messageProducer.sendMessage(Constant.OAUTH_TOPIC, model);
         } catch (Exception e) {
             e.fillInStackTrace();
             throw new ServiceException("kafka server is down");
