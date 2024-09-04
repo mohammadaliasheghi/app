@@ -2,6 +2,7 @@ package com.mmad.oauth.config;
 
 import com.mmad.oauth.service.UsersService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.lang.NonNull;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -19,6 +20,9 @@ import java.io.IOException;
 @RequiredArgsConstructor
 public class Filter extends OncePerRequestFilter {
 
+    @Value("${security.password.secret-key}")
+    private String SECRET_KEY;
+
     private final JwtConfig jwtConfig;
     private final UsersService usersService;
 
@@ -27,7 +31,7 @@ public class Filter extends OncePerRequestFilter {
         String jwt = request.getHeader(Constant.AUTHORIZATION);
 
         if (jwt != null && jwtConfig.validateToken(jwt)) {
-            String jwtUsername = SecurityUtil.getCurrentUsername(jwt);
+            String jwtUsername = SecurityUtil.getCurrentUsername(jwt, SECRET_KEY);
             if (jwtUsername != null && SecurityContextHolder.getContext().getAuthentication() == null) {
                 UserDetails users = usersService.loadUserByUsername(jwtUsername);
                 UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken =

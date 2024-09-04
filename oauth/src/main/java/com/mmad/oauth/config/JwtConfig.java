@@ -18,7 +18,7 @@ import java.util.stream.Collectors;
 public class JwtConfig {
 
     @Value("${security.password.secret-key}")
-    private String secretKey;
+    private String SECRET_KEY;
 
     private UsersService usersService;
 
@@ -38,13 +38,13 @@ public class JwtConfig {
                 .claim("authorities", details.getAuthorities().stream().map(GrantedAuthority::getAuthority).collect(Collectors.toList()))
                 .setIssuedAt(new Date(System.currentTimeMillis()))
                 .setExpiration(new Date(System.currentTimeMillis() + (60 * 60 * 12 * 1000)))
-                .signWith(SignatureAlgorithm.HS512, secretKey)
+                .signWith(SignatureAlgorithm.HS512, SECRET_KEY)
                 .compact();
     }
 
     public boolean validateToken(String token) {
         try {
-            Jwts.parser().setSigningKey(secretKey).parseClaimsJws(token);
+            Jwts.parser().setSigningKey(SECRET_KEY).parseClaimsJws(token);
             return true;
         } catch (Exception e) {
             e.fillInStackTrace();

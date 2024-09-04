@@ -1,18 +1,20 @@
 package com.mmad.oauth.service;
 
+import com.mmad.oauth.config.Constant;
 import com.mmad.oauth.config.ResourceBundle;
 import com.mmad.oauth.config.SecurityConfig;
 import com.mmad.oauth.config.SecurityUtil;
-import com.mmad.oauth.config.Constant;
 import com.mmad.oauth.entity.Users;
 import com.mmad.oauth.exception.ResourceNotFoundException;
 import com.mmad.oauth.mapper.UsersMapper;
 import com.mmad.oauth.model.UserRoleModel;
 import com.mmad.oauth.model.UsersModel;
 import com.mmad.oauth.repository.UsersRepository;
+import com.mmad.oauth.util.MessageProducer;
 import lombok.RequiredArgsConstructor;
 import org.hibernate.service.spi.ServiceException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -26,10 +28,18 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class UsersService implements UserDetailsService {
 
-    private final UsersRepository repository;
+    @Value("${security.password.secret-key}")
+    private String SECRET_KEY;
 
+    private final UsersRepository repository;
     private RolesService rolesService;
     private UserRoleService userRoleService;
+    private MessageProducer messageProducer;
+
+    @Autowired
+    public void setMessageProducer(MessageProducer messageProducer) {
+        this.messageProducer = messageProducer;
+    }
 
     @Autowired
     public void setUserRoleService(UserRoleService userRoleService) {
@@ -129,12 +139,17 @@ public class UsersService implements UserDetailsService {
     }
 
     //TODO add method for update password and encrypted password
-
     @Transactional(readOnly = true)
     public UsersModel get(Long id) {
         UsersModel model = UsersMapper.get().entityToModel(repository.findById(id).orElseThrow(() ->
                 new ResourceNotFoundException(Users.class.getSimpleName(), "id", id)));
         model.setPassword(null);
+        try {
+            messageProducer.sendMessage(Constant.OAUTH_TOPIC, String.valueOf(model));
+        } catch (Exception e) {
+            e.fillInStackTrace();
+            throw new ServiceException("kafka server is down");
+        }
         return model;
     }
 
@@ -144,7 +159,7 @@ public class UsersService implements UserDetailsService {
             throw new ServiceException(ResourceBundle.getMessageByKey("CannotBeDeletedAdminUsers"));
         String token = SecurityUtil.getTokenFromCurrentRequest();
         if (token != null && !token.isEmpty()) {
-            Long currentId = SecurityUtil.getCurrentId(token);
+            Long currentId = SecurityUtil.getCurrentId(token, SECRET_KEY);
             if (id.compareTo(currentId) == 0)
                 throw new ServiceException(ResourceBundle.getMessageByKey("CannotBeDeleteCurrentUser"));
         } else
