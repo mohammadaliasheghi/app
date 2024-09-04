@@ -41,7 +41,8 @@ public class Constant {
     public static final String TOKEN = "/token";
     //END_SECURITY
 
-    //TOPIC
+    //KAFKA
     public static final String OAUTH_TOPIC = "oauth-topic";
-    //END_TOPIC
+    public static final String OAUTH_GROUP = "oauth-group";
+    //END_KAFKA
 }
