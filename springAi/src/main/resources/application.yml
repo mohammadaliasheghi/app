@@ -1,0 +1,8 @@
+spring:
+  application:
+    name: springAi
+  ai:
+    openai:
+      api-key: ${OPEN_API_KEY}
+server:
+  port: 7885
