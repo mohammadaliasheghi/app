@@ -9,11 +9,13 @@
         <outputRelativeToContentRoot value="true" />
         <module name="oauth" />
         <module name="springAi" />
+        <module name="microservice" />
       </profile>
     </annotationProcessing>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="microservice" options="-parameters" />
       <module name="oauth" options="-parameters" />
       <module name="springAi" options="-parameters" />
     </option>

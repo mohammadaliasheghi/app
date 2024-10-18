@@ -6,6 +6,7 @@
       <list>
         <option value="$PROJECT_DIR$/oauth/pom.xml" />
         <option value="$PROJECT_DIR$/springAi/pom.xml" />
+        <option value="$PROJECT_DIR$/microservice/pom.xml" />
       </list>
     </option>
   </component>
