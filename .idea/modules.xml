@@ -5,6 +5,7 @@
       <module fileurl="file://$PROJECT_DIR$/.idea/app.iml" filepath="$PROJECT_DIR$/.idea/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/contact-manager-app.iml" filepath="$PROJECT_DIR$/contact-manager-app.iml" />
       <module fileurl="file://$PROJECT_DIR$/counter-react-app.iml" filepath="$PROJECT_DIR$/counter-react-app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/cryptography/cryptography.iml" filepath="$PROJECT_DIR$/cryptography/cryptography.iml" />
       <module fileurl="file://$PROJECT_DIR$/oauth/oauth.iml" filepath="$PROJECT_DIR$/oauth/oauth.iml" />
     </modules>
   </component>

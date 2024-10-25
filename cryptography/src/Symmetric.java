@@ -10,38 +10,47 @@ import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
 import java.util.Base64;
-import java.util.Scanner;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Symmetric {
-    public static void main(String[] args) throws InvalidAlgorithmParameterException, NoSuchPaddingException, IllegalBlockSizeException, NoSuchAlgorithmException, BadPaddingException, InvalidKeyException {
+
+    public Map<String, String> method(String payload) {
+        Map<String, String> map = new HashMap<>();
         SecureRandom secureRandom = new SecureRandom();
         byte[] key = new byte[16];
         secureRandom.nextBytes(key);
         byte[] initVector = new byte[16];
         secureRandom.nextBytes(initVector);
 
-        Scanner scanner = new Scanner(System.in);
-        System.out.print("Enter Your Text : ");
-        String payload = scanner.nextLine();
-        System.out.println("Original Text : " + payload);
+        String encrypted;
+        try {
+            encrypted = encrypt(key, initVector, payload);
+        } catch (NoSuchPaddingException | NoSuchAlgorithmException | InvalidAlgorithmParameterException |
+                 InvalidKeyException | IllegalBlockSizeException | BadPaddingException e) {
+            throw new RuntimeException(e);
+        }
+        map.put("encrypted", encrypted);
 
-        String encrypted = encrypt(key, initVector, payload);
-        System.out.println("Encrypted Text : " + encrypted);
+        String decrypted;
+        try {
+            decrypted = decrypted(key, initVector, encrypted);
+        } catch (NoSuchPaddingException | NoSuchAlgorithmException | InvalidAlgorithmParameterException |
+                 InvalidKeyException | IllegalBlockSizeException | BadPaddingException e) {
+            throw new RuntimeException(e);
+        }
+        map.put("decrypted", decrypted);
 
-        String decrypted = decrypted(key, initVector, encrypted);
-        System.out.println("Decrypted Text : " + decrypted);
+        boolean eq = decrypted.equals(payload);
+        map.put("compare", Boolean.toString(eq));
 
-        String result = decrypted.equals(payload) ? "Success :)" : "Error :(";
-        System.out.println(result);
+        return map;
     }
-
-    private static final String ALGORITHM = "AES";
-    private static final String CIPHER = "AES/CBC/PKCS5PADDING";
 
     public static String encrypt(byte[] key, byte[] initVector, String value) throws NoSuchPaddingException, NoSuchAlgorithmException, InvalidAlgorithmParameterException, InvalidKeyException, IllegalBlockSizeException, BadPaddingException {
         IvParameterSpec ivParameterSpec = new IvParameterSpec(initVector);
-        SecretKeySpec secretKeySpec = new SecretKeySpec(key, ALGORITHM);
-        Cipher cipher = Cipher.getInstance(CIPHER);
+        SecretKeySpec secretKeySpec = new SecretKeySpec(key, CryptographyConstant.AES);
+        Cipher cipher = Cipher.getInstance(CryptographyConstant.CIPHER);
         cipher.init(Cipher.ENCRYPT_MODE, secretKeySpec, ivParameterSpec);
         byte[] encrypted = cipher.doFinal(value.getBytes(StandardCharsets.UTF_8));
         return Base64.getEncoder().encodeToString(encrypted);
@@ -49,8 +58,8 @@ public class Symmetric {
 
     public static String decrypted(byte[] key, byte[] initVector, String encrypt) throws NoSuchPaddingException, NoSuchAlgorithmException, InvalidAlgorithmParameterException, InvalidKeyException, IllegalBlockSizeException, BadPaddingException {
         IvParameterSpec ivParameterSpec = new IvParameterSpec(initVector);
-        SecretKeySpec secretKeySpec = new SecretKeySpec(key, ALGORITHM);
-        Cipher cipher = Cipher.getInstance(CIPHER);
+        SecretKeySpec secretKeySpec = new SecretKeySpec(key, CryptographyConstant.AES);
+        Cipher cipher = Cipher.getInstance(CryptographyConstant.CIPHER);
         cipher.init(Cipher.DECRYPT_MODE, secretKeySpec, ivParameterSpec);
         byte[] original = cipher.doFinal(Base64.getDecoder().decode(encrypt));
         return new String(original);
