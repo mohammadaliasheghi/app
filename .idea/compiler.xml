@@ -7,16 +7,35 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="oauth" />
         <module name="springAi" />
+        <module name="jdbcAuthentication" />
         <module name="microservice" />
+        <module name="jwt" />
+        <module name="inMemoryAuthentication" />
+        <module name="otp" />
+        <module name="oauth2" />
+        <module name="oauth" />
+        <module name="cookieAndSession" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="common" target="17" />
+      <module name="demoSecurity (5)" target="1.8" />
+    </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="common" options="-parameters" />
+      <module name="cookieAndSession" options="-parameters" />
+      <module name="demoSecurity (5)" options="-parameters" />
+      <module name="inMemoryAuthentication" options="-parameters" />
+      <module name="jdbcAuthentication" options="-parameters" />
+      <module name="jwt" options="-parameters" />
       <module name="microservice" options="-parameters" />
       <module name="oauth" options="-parameters" />
+      <module name="oauth2" options="-parameters" />
+      <module name="otp" options="-parameters" />
+      <module name="security" options="-parameters" />
       <module name="springAi" options="-parameters" />
     </option>
   </component>
