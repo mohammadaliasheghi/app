@@ -1,3 +1,4 @@
+import java.util.Map;
 import java.util.Scanner;
 
 public class Main {
@@ -7,22 +8,24 @@ public class Main {
                 choose the algorithm:\s
                  (KeyPairGenerator)\s
                  (Symmetric)\s
-                 (HashingWithSalt)""");
+                 (HashingWithSalt)\s
+                 (KeyGenerator)""");
         System.out.print("enter the algorithm: ");
         String algorithm = scanner.nextLine();
 
-        switch (algorithm) {
+        var result = switch (algorithm) {
             case "KeyPairGenerator": {
                 KeyPairGeneratorDemo demo = new KeyPairGeneratorDemo();
-                System.out.println(demo.method());
-                break;
+                Map<String, Object> map = demo.method();
+                yield "key pair generation :" + map.get("keyPair") + "\n"
+                        + "public key :" + map.get("publicKey") + "\n"
+                        + "private key :" + map.get("privateKey");
             }
             case "Symmetric": {
                 Symmetric symmetric = new Symmetric();
                 System.out.print("Enter Your Text : ");
                 String payload = scanner.nextLine();
-                System.out.println(symmetric.method(payload));
-                break;
+                yield symmetric.method(payload);
             }
             case "HashingWithSalt": {
                 HashingWithSalt hashingWithSalt = new HashingWithSalt();
@@ -30,13 +33,16 @@ public class Main {
                 String username = scanner.nextLine();
                 System.out.print("password : ");
                 String password = scanner.nextLine();
-                System.out.println(hashingWithSalt.method(username, password));
-                break;
+                yield hashingWithSalt.method(username, password);
+            }
+            case "KeyGenerator": {
+                KeyGeneratorDemo keyGeneratorDemo = new KeyGeneratorDemo();
+                yield keyGeneratorDemo.method();
             }
             default:
-                System.out.println("Invalid algorithm");
-        }
+                yield "Invalid algorithm";
+        };
 
-        System.out.println("Successfully executed");
+        System.out.println(result);
     }
 }

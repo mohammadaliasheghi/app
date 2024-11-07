@@ -1,8 +1,10 @@
 import java.security.*;
+import java.util.HashMap;
+import java.util.Map;
 
 public class KeyPairGeneratorDemo {
 
-    public String method() {
+    public Map<String, Object> method() {
         final KeyPairGenerator keyPairGenerator;
         try {
             keyPairGenerator = KeyPairGenerator.getInstance(CryptographyConstant.RSA);
@@ -14,7 +16,10 @@ public class KeyPairGeneratorDemo {
 
         final PublicKey publicKey = keyPair.getPublic();
         final PrivateKey privateKey = keyPair.getPrivate();
-
-        return "PUBLIC KEY : " + publicKey + "\n PRIVATE KEY : " + privateKey;
+        Map<String, Object> result = new HashMap<>();
+        result.put("keyPair", keyPair);
+        result.put("publicKey", publicKey);
+        result.put("privateKey", privateKey);
+        return result;
     }
 }
