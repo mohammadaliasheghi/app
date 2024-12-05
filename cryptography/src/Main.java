@@ -9,7 +9,8 @@ public class Main {
                  (KeyPairGenerator)\s
                  (Symmetric)\s
                  (HashingWithSalt)\s
-                 (KeyGenerator)""");
+                 (KeyGenerator)\s
+                 (Decryption)""");
         System.out.print("enter the algorithm: ");
         String algorithm = scanner.nextLine();
 
@@ -38,6 +39,11 @@ public class Main {
             case "KeyGenerator": {
                 KeyGeneratorDemo keyGeneratorDemo = new KeyGeneratorDemo();
                 yield keyGeneratorDemo.method();
+            }
+            case "Decryption": {
+                FileEncryptor encryptor = new FileEncryptor();
+                encryptor.method();
+                yield "Decryption Success";
             }
             default:
                 yield "Invalid algorithm";
