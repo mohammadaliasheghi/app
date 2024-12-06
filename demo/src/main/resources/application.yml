@@ -1,0 +1,25 @@
+spring:
+  h2:
+    console:
+      enabled: true
+  sql:
+    init:
+      continue-on-error: true
+  datasource:
+    url: jdbc:postgresql://localhost:5432/demo
+    username: cloud
+    password: cloud
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+    show-sql: true
+  application:
+    name: demo
+
+server:
+  port: 8888
+  error:
+    include-message: always

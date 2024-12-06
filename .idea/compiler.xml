@@ -15,6 +15,7 @@
         <module name="otp" />
         <module name="oauth2" />
         <module name="oauth" />
+        <module name="demo" />
         <module name="cookieAndSession" />
       </profile>
     </annotationProcessing>
@@ -27,6 +28,7 @@
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="common" options="-parameters" />
       <module name="cookieAndSession" options="-parameters" />
+      <module name="demo" options="-parameters" />
       <module name="demoSecurity (5)" options="-parameters" />
       <module name="inMemoryAuthentication" options="-parameters" />
       <module name="jdbcAuthentication" options="-parameters" />
