@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>create user</title>
+</head>
+<body>
+<p>Enter data</p>
+<form action="/create" method="post" th:object="${formData}">
+    <p>fullName :
+        <label>
+            <input type="text" th:field="${formData.fullName}"/>
+        </label>
+    </p>
+    <p>age :
+        <label>
+            <input type="text" th:field="${formData.age}"/>
+        </label>
+    </p>
+    <p>employee :
+        <label>
+            <input type="checkbox" th:field="${formData.employee}" th:value="true"/>
+        </label>
+    </p>
+    <p>gender :
+        <label>
+            Male <input type="radio" th:field="${formData.gender}" th:value="MALE"/>
+            Female <input type="radio" th:field="${formData.gender}" th:value="FEMALE"/>
+        </label>
+    </p>
+    <p>
+        <label>
+            <input type="submit" value="submit"/>
+            <input type="reset" value="reset"/>
+        </label>
+    </p>
+</form>
+</body>
+</html>
