@@ -26,7 +26,7 @@ public class ProjectController {
     public String create(ProjectModel formData, RedirectAttributes redirectAttributes) {
         formData = service.createProject(formData);
         redirectAttributes.addFlashAttribute("formData", formData);
-        return "redirect:/display";
+        return "redirect:/project/display";
     }
 
     @RequestMapping(value = "/display", method = RequestMethod.GET)
