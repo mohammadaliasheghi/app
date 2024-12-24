@@ -1,7 +1,7 @@
 package com.app.demo.web;
 
-import com.app.demo.model.UserModel;
-import com.app.demo.service.UserService;
+import com.app.demo.model.ProjectModel;
+import com.app.demo.service.ProjectService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,27 +11,27 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 @RequiredArgsConstructor
-@RequestMapping(value = "/user")
-public class UserController {
+@RequestMapping(value = "/project")
+public class ProjectController {
 
-    private final UserService userService;
+    private final ProjectService service;
 
     @RequestMapping(value = "/")
-    public String fetchUserTemplate(Model model) {
-        model.addAttribute("formData", new UserModel());
-        return "user";
+    public String fetchProjectTemplate(Model model) {
+        model.addAttribute("formData", new ProjectModel());
+        return "project";
     }
 
     @RequestMapping(value = "/create", method = RequestMethod.POST)
-    public String create(UserModel formData, RedirectAttributes redirectAttributes) {
-        formData = userService.createUser(formData);
+    public String create(ProjectModel formData, RedirectAttributes redirectAttributes) {
+        formData = service.createProject(formData);
         redirectAttributes.addFlashAttribute("formData", formData);
         return "redirect:/display";
     }
 
     @RequestMapping(value = "/display", method = RequestMethod.GET)
-    public String get(UserModel formData, RedirectAttributes redirectAttributes) {
+    public String get(ProjectModel formData, RedirectAttributes redirectAttributes) {
         redirectAttributes.addFlashAttribute("formData", formData);
-        return "user-display";
+        return "project-display";
     }
 }
