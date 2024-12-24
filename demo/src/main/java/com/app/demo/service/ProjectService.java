@@ -8,6 +8,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class ProjectService {
@@ -19,5 +21,12 @@ public class ProjectService {
         ProjectEntity entity = ProjectMapper.get().modelToEntity(model);
         repository.save(entity);
         return ProjectMapper.get().entityToModel(entity);
+    }
+
+    @Transactional(readOnly = true)
+    public List<ProjectModel> getList() {
+        return ProjectMapper
+                .get()
+                .entitiesToModels(repository.findAll());
     }
 }

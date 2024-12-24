@@ -8,6 +8,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class UserService {
@@ -19,5 +21,12 @@ public class UserService {
         UserEntity entity = UserMapper.get().modelToEntity(model);
         repository.save(entity);
         return UserMapper.get().entityToModel(entity);
+    }
+
+    @Transactional(readOnly = true)
+    public List<UserModel> getList() {
+        return UserMapper
+                .get()
+                .entitiesToModels(repository.findAll());
     }
 }

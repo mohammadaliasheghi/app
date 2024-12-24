@@ -11,7 +11,7 @@ public class HomeController {
 
     @RequestMapping(value = "/")
     public String index(Model model) {
-        model.addAttribute("formData", new PageModel());
+        model.addAttribute("data", new PageModel());
         return "index";
     }
 

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>project list</title>
+</head>
+<body>
+<div>
+    <h4>current project list</h4>
+    <table>
+        <thead>
+        <tr>
+            <th>Name</th>
+            <th>Stage</th>
+            <th>Description</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="model:${data}">
+            <td th:text="${model.getName()}"/>
+            <td th:text="${model.getStage()}"/>
+            <td th:text="${model.getDescription()}"/>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

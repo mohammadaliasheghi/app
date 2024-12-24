@@ -6,6 +6,8 @@ import org.mapstruct.Mapper;
 import org.mapstruct.NullValueMappingStrategy;
 import org.mapstruct.factory.Mappers;
 
+import java.util.List;
+
 @Mapper(nullValueMappingStrategy = NullValueMappingStrategy.RETURN_NULL
         , componentModel = "spring"
 )
@@ -18,4 +20,6 @@ public interface UserMapper {
     UserModel entityToModel(UserEntity entity);
 
     UserEntity modelToEntity(UserModel model);
+
+    List<UserModel> entitiesToModels(List<UserEntity> entity);
 }

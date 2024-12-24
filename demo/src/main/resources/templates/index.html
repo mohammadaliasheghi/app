@@ -6,9 +6,9 @@
 </head>
 <body>
 <div>
-    <form action="/find" method="post" th:object="${formData}">
+    <form action="/find" method="post" th:object="${data}">
         <label>
-            <select th:field="${formData.name}">
+            <select th:field="${data.name}">
                 <option th:value="USER">user</option>
                 <option th:value="PROJECT">project</option>
             </select>
