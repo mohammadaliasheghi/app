@@ -26,7 +26,7 @@ public class UserController {
     public String create(UserModel formData, RedirectAttributes redirectAttributes) {
         formData = userService.createUser(formData);
         redirectAttributes.addFlashAttribute("formData", formData);
-        return "redirect:/display";
+        return "redirect:/user/display";
     }
 
     @RequestMapping(value = "/display", method = RequestMethod.GET)

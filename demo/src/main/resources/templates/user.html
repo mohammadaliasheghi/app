@@ -6,7 +6,7 @@
 </head>
 <body>
 <p>Enter data</p>
-<form action="/create" method="post" th:object="${formData}">
+<form action="/user/create" method="post" th:object="${formData}">
     <p>fullName :
         <label>
             <input type="text" th:field="${formData.fullName}"/>
