@@ -5,16 +5,7 @@
     <title>path</title>
 </head>
 <body>
-<div>
-    <form action="/find" method="post" th:object="${data}">
-        <label>
-            <select th:field="${data.name}">
-                <option th:value="USER">user</option>
-                <option th:value="PROJECT">project</option>
-            </select>
-        </label>
-        <input type="submit" value="submit"/>
-    </form>
-</div>
+<!-- Include Navbar Fragment -->
+<div th:replace="fragments/navbar :: navbar"></div>
 </body>
 </html>

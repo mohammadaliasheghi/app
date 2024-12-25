@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User List</title>
+    <link rel="stylesheet" th:href="@{/index.css}">
+</head>
+<body>
+<div class="container">
+    <h4>Current User List</h4>
+    <table class="user-table">
+        <thead>
+        <tr>
+            <th>Full Name</th>
+            <th>Age</th>
+            <th>Employee</th>
+            <th>Gender</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="model : ${data}">
+            <td th:text="${model.getFullName()}"></td>
+            <td th:text="${model.getAge()}"></td>
+            <td th:text="${model.getEmployee() ? 'EMPLOYEE' : '-'}"></td>
+            <td th:text="${model.getGender()}"></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<script th:src="@{/index.js}"></script>
+</body>
+</html>

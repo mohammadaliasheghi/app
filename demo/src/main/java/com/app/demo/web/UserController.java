@@ -21,7 +21,7 @@ public class UserController {
     @RequestMapping(value = "/create", method = RequestMethod.GET)
     public String fetchUserTemplate(Model model) {
         model.addAttribute("data", new UserModel());
-        return "user";
+        return "user-temp/user";
     }
 
     @RequestMapping(value = "/create", method = RequestMethod.POST)
@@ -34,13 +34,13 @@ public class UserController {
     @RequestMapping(value = "/display", method = RequestMethod.GET)
     public String get(UserModel formData, RedirectAttributes redirectAttributes) {
         redirectAttributes.addFlashAttribute("data", formData);
-        return "user-display";
+        return "user-temp/user-display";
     }
 
     @RequestMapping(value = {"", "/"}, method = RequestMethod.GET)
     public String getList(Model model) {
         List<UserModel> list = service.getList();
         model.addAttribute("data", list);
-        return "user-list";
+        return "user-temp/user-list";
     }
 }

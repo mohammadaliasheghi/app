@@ -1,0 +1,108 @@
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background-color: #f4f4f9;
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+}
+
+/* Container */
+.container {
+    max-width: 900px;
+    margin: 2rem auto;
+    padding: 1rem;
+    background: white;
+    border-radius: 10px; /* Rounded corners for the container */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Header */
+h4 {
+    text-align: center;
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+    color: #007bff;
+    text-transform: uppercase;
+    border-bottom: 3px solid #007bff;
+    display: inline-block;
+    padding-bottom: 0.5rem;
+}
+
+/* Table Styles */
+.user-table {
+    width: 100%;
+    border-collapse: separate; /* Allow for border-spacing */
+    border-spacing: 0; /* Remove default spacing */
+    border-radius: 10px; /* Rounded corners for the entire table */
+    overflow: hidden; /* Ensure corners remain clipped */
+    margin: 0 auto;
+    background: white;
+}
+
+.user-table thead {
+    background: #007bff; /* Blue header */
+    color: white;
+}
+
+.user-table th {
+    padding: 15px;
+    text-align: left;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 0.9rem;
+}
+
+.user-table tbody tr {
+    transition: background 0.3s ease; /* Smooth background hover effect */
+}
+
+.user-table tbody tr:nth-child(odd) {
+    background: #f9f9f9;
+}
+
+.user-table tbody tr:nth-child(even) {
+    background: #eef3f7;
+}
+
+.user-table tbody tr:hover {
+    background: #d6e4f0; /* Highlighted row on hover */
+}
+
+.user-table td {
+    padding: 15px;
+    border-bottom: 1px solid #ddd; /* Subtle row separators */
+}
+
+/* Table Border Radius */
+.user-table thead th:first-child {
+    border-top-left-radius: 10px; /* Rounded top-left corner */
+}
+
+.user-table thead th:last-child {
+    border-top-right-radius: 10px; /* Rounded top-right corner */
+}
+
+.user-table tbody tr:last-child td:first-child {
+    border-bottom-left-radius: 10px; /* Rounded bottom-left corner */
+}
+
+.user-table tbody tr:last-child td:last-child {
+    border-bottom-right-radius: 10px; /* Rounded bottom-right corner */
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .user-table {
+        font-size: 0.9rem;
+    }
+
+    h4 {
+        font-size: 1.2rem;
+    }
+}

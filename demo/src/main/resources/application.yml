@@ -18,6 +18,8 @@ spring:
     show-sql: true
   application:
     name: demo
+  thymeleaf:
+    cache: false
 
 server:
   port: 8888

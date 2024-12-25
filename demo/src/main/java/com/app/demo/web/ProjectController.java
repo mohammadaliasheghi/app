@@ -21,7 +21,7 @@ public class ProjectController {
     @RequestMapping(value = "/create", method = RequestMethod.GET)
     public String fetchProjectTemplate(Model model) {
         model.addAttribute("data", new ProjectModel());
-        return "project";
+        return "project-temp/project";
     }
 
     @RequestMapping(value = "/create", method = RequestMethod.POST)
@@ -34,13 +34,13 @@ public class ProjectController {
     @RequestMapping(value = "/display", method = RequestMethod.GET)
     public String get(ProjectModel formData, RedirectAttributes redirectAttributes) {
         redirectAttributes.addFlashAttribute("data", formData);
-        return "project-display";
+        return "project-temp/project-display";
     }
 
     @RequestMapping(value = {"", "/"}, method = RequestMethod.GET)
     public String getList(Model model) {
         List<ProjectModel> list = service.getList();
         model.addAttribute("data", list);
-        return "project-list";
+        return "project-temp/project-list";
     }
 }
