@@ -106,3 +106,33 @@ h4 {
         font-size: 1.2rem;
     }
 }
+
+/* Navbar Styling */
+.navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #007bff;
+    padding: 0.5rem 1rem;
+    color: white;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.nav-actions {
+    display: flex;
+    gap: 1rem;
+}
+
+.nav-actions button {
+    padding: 0.5rem 1rem;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+.nav-actions button:hover {
+    background-color: #218838;
+}
