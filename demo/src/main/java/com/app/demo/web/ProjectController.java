@@ -18,8 +18,8 @@ public class ProjectController {
 
     private final ProjectService service;
 
-    @RequestMapping(value = "/create", method = RequestMethod.GET)
-    public String fetchProjectTemplate(Model model) {
+    @RequestMapping(value = "/new", method = RequestMethod.GET)
+    public String newProject(Model model) {
         model.addAttribute("data", new ProjectModel());
         return "project-temp/project";
     }

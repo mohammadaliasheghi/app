@@ -9,6 +9,8 @@
 <body>
 <div th:replace="fragments/navbar :: navbar"></div>
 <div class="container">
+    <a th:href="@{/user/new}">Add User</a>
+    <br/>
     <h4>Current User List</h4>
     <table class="user-table">
         <thead>

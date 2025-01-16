@@ -18,8 +18,8 @@ public class UserController {
 
     private final UserService service;
 
-    @RequestMapping(value = "/create", method = RequestMethod.GET)
-    public String fetchUserTemplate(Model model) {
+    @RequestMapping(value = "/new", method = RequestMethod.GET)
+    public String newUser(Model model) {
         model.addAttribute("data", new UserModel());
         return "user-temp/user";
     }
